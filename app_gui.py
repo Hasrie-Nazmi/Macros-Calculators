@@ -1,25 +1,34 @@
-import customtkinter as ctk
+import customtkinter
 
 
-def button_callback():
-    print("button pressed")
+class App(customtkinter.CTk):
+    def __init__(self):
+        super().__init__()
+
+        self.title("my app")
+        self.geometry("550x800")
+
+        self.generate_calculator_buttons()
+
+    def calc_btn_pressed(self, btn_value: str) -> str:
+        print(btn_value)
+        return btn_value
+
+    def generate_calculator_buttons(self,):
+        calc_btn_labels = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+        for i, label in enumerate(calc_btn_labels):
+            row = i // 3
+            col = i % 3
+
+            self.calc_btn = customtkinter.CTkButton(
+                self, text=label, width=40, height=20, command=lambda t=label: self.calc_btn_pressed(t))
+            self.calc_btn.grid(row=row, column=col, padx=5, pady=5)
+
+        self.calc_btn = customtkinter.CTkButton(
+            self, text=0, width=40, height=20, command=lambda t=0: self.calc_btn_pressed(t))
+        self.calc_btn.grid(row=4, column=1, padx=5, pady=5)
 
 
-app = ctk.CTk()
-app.title("my app")
-app.geometry("550x800")
-
-
-def generate_calculator_buttons():
-    for i in range(9):
-        button1 = ctk.CTkButton(app, text="my button", command=button_callback)
-
-
-# button1 = ctk.CTkButton(app, text="my button", command=button_callback)
-# button2 = ctk.CTkButton(app, text="my button", command=button_callback)
-# button3 = ctk.CTkButton(app, text="my button", command=button_callback)
-# button1.grid(row=0, column=0, padx=20, pady=20)
-# button2.grid(row=0, column=1, padx=20, pady=20)
-# button3.grid(row=0, column=2, padx=20, pady=20)
-
+app = App()
 app.mainloop()
