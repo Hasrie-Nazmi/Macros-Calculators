@@ -2,8 +2,6 @@ import customtkinter
 from calculations import MacroCalculator
 
 # todo:
-# Prevent user from using multiple operations in a row e.g: +---/**
-# Clear exp_str stack and replace with result of calculation
 
 
 class App(customtkinter.CTk):
@@ -17,9 +15,12 @@ class App(customtkinter.CTk):
         self.exp_str = []
 
     def calc_btn_pressed(self, btn_value: str) -> str:
-        self.exp_str.append(btn_value)
-        print(self.exp_str)
-        return "".join(btn_value)
+        if self.exp_str and self.exp_str[-1] in "+-/*" and btn_value in "+-/*":
+            print(self.exp_str)
+        else:
+            self.exp_str.append(btn_value)
+            print(self.exp_str)
+            return "".join(btn_value)
 
     def delete_value(self,) -> bool:
         if self.exp_str:
@@ -33,7 +34,8 @@ class App(customtkinter.CTk):
         calc = MacroCalculator()
         tokenization = calc.exp_to_tokens("".join(self.exp_str))
         result = calc.calculate_exp(tokenization)
-        print(result)
+        self.exp_str = [str(result)]
+        print(result, self.exp_str)
 
     def generate_calculator_buttons(self,):
         calc_btn_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
