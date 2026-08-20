@@ -3,6 +3,14 @@ import numpy as np
 
 
 class MacroCalculator:
+    def __init__(self):
+        self.ingredients = {}
+
+        self.calorie_list = []
+        self.protein_list = []
+        self.fibre_list = []
+        self.carbs_list = []
+
     def exp_to_tokens(self, exp: str) -> list[str | int | float]:
         raw_tokens = re.findall(r"\d+\.?\d*|[\+\-\*/]", exp)
 
@@ -18,22 +26,16 @@ class MacroCalculator:
 
         return tokens
 
-    def calculate_macros(self, ingredient: str, serve: float, macros: list[float, float, float, float]) -> dict:
-        ingredients = {}
-
-        calorie_list = []
-        protein_list = []
-        fibre_list = []
-        carbs_list = []
+    def process_macros(self, ingredient: str, macros: list[float, float, float, float], serve: float) -> dict:
 
         macro_served = np.array(macros) * serve
-        calorie_list.append(macro_served[0])
-        protein_list.append(macro_served[1])
-        fibre_list.append(macro_served[2])
-        carbs_list.append(macro_served[3])
+        self.calorie_list.append(macro_served[0])
+        self.protein_list.append(macro_served[1])
+        self.fibre_list.append(macro_served[2])
+        self.carbs_list.append(macro_served[3])
 
         cal, protein, fibre, carbs = macros
-        ingredients[ingredient] = {
+        self.ingredients[ingredient] = {
             "serve": serve,
             "cal": cal,
             "protein": protein,
@@ -41,7 +43,22 @@ class MacroCalculator:
             "carbs": carbs
         }
 
-        return ingredients
+        return self.ingredients
+
+    def calculate_total_macros(self, recipe_name: str) -> dict:
+        total_macros = {}
+
+        total_calories = sum(self.calorie_list)
+        total_protein = sum(self.protein_list)
+        total_fibre = sum(self.fibre_list)
+        total_carbs = sum(self.carbs_list)
+
+        total_macros[recipe_name] = {
+            "ingredients": self.ingredients,
+            "total_macros": [total_calories, total_protein, total_fibre, total_carbs]
+        }
+
+        return total_macros
 
     def calculate_exp(self, exp: list[str | int]) -> float:
         exp_stack = []
