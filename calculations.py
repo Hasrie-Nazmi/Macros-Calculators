@@ -11,6 +11,31 @@ class MacroCalculator:
         self.fibre_list = []
         self.carbs_list = []
 
+    def calculate_daily_calories(self, weight: float, height: float, age: int, sex: str, activity_lvl: int) -> list[float, float]:
+        if sex.upper() == "M":
+            sex = 5
+        elif sex.upper() == "F":
+            sex = -161
+
+        activity_lvl_dict = {
+            1: 1.2,
+            2: 1.375,
+            3: 1.55,
+            4: 1.725,
+            5: 1.9,
+        }
+
+        BMR = (10 * weight) + (6.25 * height) - (5 * age) + sex
+        TDEE = BMR * activity_lvl_dict[activity_lvl]
+
+        return [round(TDEE, 1), round(BMR, 1)]
+
+    def calculate_daily_protein(self, weight: float):
+        return weight * 1.6
+
+    def calculate_daily_fibre(self, calories: float):
+        return (calories / 1000) * 14
+
     def exp_to_tokens(self, exp: str) -> list[str | int | float]:
         raw_tokens = re.findall(r"\d+\.?\d*|[\+\-\*/]", exp)
 
@@ -91,4 +116,5 @@ exp = "5 + 2 * 3 - 4"
 
 calc = MacroCalculator()
 tokens = calc.exp_to_tokens(exp)
-print(calc.calculate_exp(tokens))
+# print(calc.calculate_daily_calories(64, 167.7, 25, "M", 4))
+print(calc.calculate_daily_fibre(1800))
