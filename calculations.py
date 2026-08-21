@@ -30,10 +30,10 @@ class MacroCalculator:
 
         return [round(TDEE, 1), round(BMR, 1)]
 
-    def calculate_daily_protein(self, weight: float):
+    def calculate_daily_protein(self, weight: float) -> float:
         return weight * 1.6
 
-    def calculate_daily_fibre(self, calories: float):
+    def calculate_daily_fibre(self, calories: float) -> float:
         return (calories / 1000) * 14
 
     def exp_to_tokens(self, exp: str) -> list[str | int | float]:
