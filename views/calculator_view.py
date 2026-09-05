@@ -4,9 +4,9 @@ from calculations import MacroCalculator
 # todo:
 
 
-class App(customtkinter.CTk):
-    def __init__(self):
-        super().__init__()
+class CalculatorFrame(customtkinter.CTk):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
 
         self.title("Calorie Calculator")
         self.geometry("475x800")
@@ -73,5 +73,5 @@ class App(customtkinter.CTk):
         self.calc_btn.grid(row=5, column=4, padx=5, pady=5)
 
 
-app = App()
-app.mainloop()
+# app = CalculatorFrame()
+# app.mainloop()

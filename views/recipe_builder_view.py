@@ -1,9 +1,9 @@
 import customtkinter
 
 
-class App(customtkinter.CTk):
-    def __init__(self,):
-        super().__init__()
+class RecipeBuilderFrame(customtkinter.CTk):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
 
         self.title("Recipe Builder")
         self.geometry("1000x500")
@@ -135,5 +135,5 @@ class App(customtkinter.CTk):
         )
 
 
-app = App()
-app.mainloop()
+# app = RecipeBuilderFrame()
+# app.mainloop()
