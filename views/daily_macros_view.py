@@ -1,11 +1,11 @@
 import customtkinter
 
 
-class DailyMacros(customtkinter.CTk):
-    def __init__(self):
-        super().__init__()
-        self.title("Daily Macros Calculator")
-        self.geometry("800x600")
+class DailyMacrosFrame(customtkinter.CTkFrame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        # self.title("Daily Macros Calculator")
+        # self.geometry("800x600")
 
         customtkinter.CTkLabel(self, text="Height").grid(
             row=1, column=0, padx=15, pady=5, sticky="w")
@@ -62,5 +62,5 @@ class DailyMacros(customtkinter.CTk):
 # BMR, TDEE, Protein, Fibre
 
 
-app = DailyMacros()
-app.mainloop()
+# app = DailyMacros()
+# app.mainloop()

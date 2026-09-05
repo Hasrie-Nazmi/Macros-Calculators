@@ -1,11 +1,11 @@
 import customtkinter
 
 
-class UnitConvert(customtkinter.CTk):
-    def __init__(self):
-        super().__init__()
-        self.title("Unit Conversion")
-        self.geometry("800x600")
+class UnitConvertFrame(customtkinter.CTkFrame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        # self.title("Unit Conversion")
+        # self.geometry("800x600")
 
         customtkinter.CTkLabel(self, text="Weight (KG)").grid(
             row=1, column=0, padx=15, pady=5, sticky="w")
@@ -59,6 +59,6 @@ class UnitConvert(customtkinter.CTk):
                 return False
 
 
-app = UnitConvert()
-# app.mainloop()
-print(app.convert_height("167.7"))
+# app = UnitConvert()
+# # app.mainloop()
+# print(app.convert_height("167.7"))

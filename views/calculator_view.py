@@ -4,12 +4,12 @@ from calculations import MacroCalculator
 # todo:
 
 
-class CalculatorFrame(customtkinter.CTk):
+class CalculatorFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.title("Calorie Calculator")
-        self.geometry("475x800")
+        # self.title("Calorie Calculator")
+        # self.geometry("475x800")
 
         self.generate_calculator_buttons()
         self.exp_str = []

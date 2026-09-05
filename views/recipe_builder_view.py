@@ -1,12 +1,12 @@
 import customtkinter
 
 
-class RecipeBuilderFrame(customtkinter.CTk):
+class RecipeBuilderFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.title("Recipe Builder")
-        self.geometry("1000x500")
+        # self.title("Recipe Builder")
+        # self.geometry("1000x500")
 
         self.row = 0
         self.item_count = 0
