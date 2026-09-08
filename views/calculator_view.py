@@ -1,5 +1,5 @@
 import customtkinter
-from calculations import MacroCalculator
+import calculations as calc
 
 # todo:
 # -Fix button alignments
@@ -24,17 +24,15 @@ class CalculatorFrame(customtkinter.CTkFrame):
 
     def calc_btn_pressed(self, btn_value: str) -> str:
         if self.exp_str and self.exp_str[-1] in "+-/*" and btn_value in "+-/*":
-            print(self.exp_str)
+            pass
         else:
             self.exp_str.append(btn_value)
-            print(self.exp_str)
             self.exp_lbl.configure(text="".join(self.exp_str))
             return "".join(btn_value)
 
     def delete_value(self,) -> bool:
         if self.exp_str:
             self.exp_str.pop()
-            print(self.exp_str)
             return True
         else:
             return False
@@ -48,15 +46,12 @@ class CalculatorFrame(customtkinter.CTkFrame):
 
         # Checks if exp_str has an op in it to prevent multiple string elements from joining
         if any(op in self.exp_str for op in "+-*/"):
-            calc = MacroCalculator()
             tokenization = calc.exp_to_tokens("".join(self.exp_str))
             result = calc.calculate_exp(tokenization)
             self.exp_str = [str(result)]
 
-            print(result, self.exp_str)
             self.result.configure(text=f"= {result}")
         else:
-            print("HERE")
             pass
 
     def generate_calculator_buttons(self,):
@@ -97,7 +92,3 @@ class CalculatorFrame(customtkinter.CTkFrame):
         self.clr_btn = customtkinter.CTkButton(
             self, text="C", width=width+20, height=height, command=self.clear_calc)
         self.clr_btn.grid(row=5, column=3, padx=5, pady=5)
-
-
-# app = CalculatorFrame()
-# app.mainloop()

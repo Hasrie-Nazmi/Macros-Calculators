@@ -1,12 +1,10 @@
 import customtkinter
-from calculations import MacroCalculator
+import calculations as calc
 
 
 class DailyMacrosFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        # self.title("Daily Macros Calculator")
-        # self.geometry("800x600")
 
         customtkinter.CTkLabel(self, text="Height").grid(
             row=1, column=0, padx=15, pady=5, sticky="w")
@@ -56,14 +54,12 @@ class DailyMacrosFrame(customtkinter.CTkFrame):
             row=5, column=0, padx=15, pady=15, sticky="w")
 
     def calculate_daily_macros(self,):
-        daily_macros = MacroCalculator()
-
-        calories = daily_macros.calculate_daily_calories(
+        calories = calc.calculate_daily_calories(
             weight=float(self.weight_e.get()), height=float(self.height_e.get()), age=int(self.age_e.get()), gender=self.gender_menu.get(), activity_lvl=self.activity_lvl_dict[self.active_menu.get()])
 
-        protein = daily_macros.calculate_daily_protein(
+        protein = calc.calculate_daily_protein(
             weight=float(self.weight_e.get()))
-        fibre = daily_macros.calculate_daily_fibre(calories[0])
+        fibre = calc.calculate_daily_fibre(calories[0])
 
         self.display_daily_macros(
             calories=calories, protein=round(protein, 1), fibre=round(fibre, 1))
@@ -84,9 +80,3 @@ class DailyMacrosFrame(customtkinter.CTkFrame):
 
             customtkinter.CTkLabel(self, text=f"{k}{v}", font=("", fontsize)).grid(
                 row=row, column=col, padx=15, pady=5, sticky="w")
-
-# BMR, TDEE, Protein, Fibre
-
-
-# app = DailyMacros()
-# app.mainloop()

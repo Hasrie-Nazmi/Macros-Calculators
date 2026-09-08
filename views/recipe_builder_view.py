@@ -5,9 +5,6 @@ class RecipeBuilderFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        # self.title("Recipe Builder")
-        # self.geometry("1000x500")
-
         self.row = 0
         self.item_count = 0
         self.textfield_values = []
@@ -98,7 +95,6 @@ class RecipeBuilderFrame(customtkinter.CTkFrame):
             e_data.grid(row=self.row+1, column=col+1,
                         padx=10, pady=5, sticky="w")
 
-            # macro_list[i-1].append(e_data)
             row_values[key] = e_data
 
         self.textfield_values.append(row_values)
@@ -133,7 +129,3 @@ class RecipeBuilderFrame(customtkinter.CTkFrame):
         self.save_button.grid(
             row=self.row+2, column=3, columnspan=2, pady=15, sticky="ew"
         )
-
-
-# app = RecipeBuilderFrame()
-# app.mainloop()
