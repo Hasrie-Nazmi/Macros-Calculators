@@ -6,14 +6,14 @@ class DailyMacrosFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        customtkinter.CTkLabel(self, text="Height").grid(
+        customtkinter.CTkLabel(self, text="Height (cm)").grid(
             row=1, column=0, padx=15, pady=5, sticky="w")
 
         self.height_e = customtkinter.CTkEntry(self)
         self.height_e.grid(
             row=2, column=0, padx=15, pady=5, sticky="w")
 
-        customtkinter.CTkLabel(self, text="Weight").grid(
+        customtkinter.CTkLabel(self, text="Weight (kg)").grid(
             row=1, column=1, padx=15, pady=5, sticky="w")
 
         self.weight_e = customtkinter.CTkEntry(self)
@@ -65,18 +65,36 @@ class DailyMacrosFrame(customtkinter.CTkFrame):
             calories=calories, protein=round(protein, 1), fibre=round(fibre, 1))
 
     def display_daily_macros(self, calories: list[float, float], protein: float, fibre: float):
+
+        frame = self.draw_card_label()
+
         labels = {"BMR: ": calories[1],
                   "TDEE: ": calories[0],
                   "Protein: ": protein,
                   "Fibre: ": fibre}
         fontsize = 20
 
-        customtkinter.CTkLabel(self, text="Total Daily Macros:", font=("", fontsize)).grid(
-            row=2, column=3, rowspan=3, padx=15, pady=5, sticky="w")
-
         for i, (k, v) in enumerate(labels.items()):
-            col = (i % 2) + 3
-            row = (i // 2) + 4
+            col = (i % 2)
+            row = (i // 2)
 
-            customtkinter.CTkLabel(self, text=f"{k}{v}", font=("", fontsize)).grid(
+            customtkinter.CTkLabel(frame, text=f"{k}{v}", font=("", fontsize)).grid(
                 row=row, column=col, padx=15, pady=5, sticky="w")
+
+    def draw_card_label(self):
+        card_frame = customtkinter.CTkFrame(
+            master=self,
+            width=350,
+            height=150,
+            corner_radius=6,
+            border_width=2,
+            fg_color="#1f538d",        # Rectangle background fill color
+            border_color="#ffffff"
+        )
+
+        card_frame.place(relx=0.9, rely=0.2, anchor="se")
+
+        card_frame.grid_columnconfigure(0, weight=1)
+        card_frame.grid_columnconfigure(1, weight=1)
+
+        return card_frame

@@ -16,10 +16,10 @@ class App(customtkinter.CTk):
         self.tabview = customtkinter.CTkTabview(self)
         self.tabview.pack(fill="both", expand=True, padx=10, pady=10)
 
-        self.tabview.add("Recipe Builder")
-        self.tabview.add("Calculator")
         self.tabview.add("Daily Macros")
+        self.tabview.add("Recipe Builder")
         self.tabview.add("Unit Converter")
+        self.tabview.add("Calculator")
 
         self.recipe_builder_view = RecipeBuilderFrame(
             self.tabview.tab("Recipe Builder"))
