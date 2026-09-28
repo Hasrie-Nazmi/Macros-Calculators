@@ -68,11 +68,11 @@ class UnitConvertFrame(customtkinter.CTkFrame):
         self.feet_var.trace_add("write", self._on_feet_inch_change)
         self.inches_var.trace_add("write", self._on_feet_inch_change)
 
-    def convert_weight(self, data):
-        data = self.num_checker(data)
-        return data * 2.205
+    def convert_weight(self, value: float) -> float:
+        value = self.num_checker(value)
+        return value * 2.205
 
-    def cm_to_feet_inches(self, value):
+    def cm_to_feet_inches(self, value: float) -> float:
         total_inches = value / 2.54
         feet = total_inches // 12
 
