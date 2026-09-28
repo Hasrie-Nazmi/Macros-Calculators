@@ -48,22 +48,6 @@ def process_macros(ingredient: str, macros: list[float, float, float, float], se
     return ingredients
 
 
-# def calculate_total_macros( recipe_name: str) -> dict:
-#     total_macros = {}
-
-#     total_calories = sum(calorie_list)
-#     total_protein = sum(protein_list)
-#     total_fibre = sum(fibre_list)
-#     total_carbs = sum(carbs_list)
-
-#     total_macros[recipe_name] = {
-#         "ingredients": ingredients,
-#         "total_macros": [total_calories, total_protein, total_fibre, total_carbs]
-#     }
-
-#     return total_macros
-
-
 def exp_to_tokens(exp: str) -> list[str | int | float]:
     raw_tokens = re.findall(r"\d+\.?\d*|[\+\-\*/]", exp)
 

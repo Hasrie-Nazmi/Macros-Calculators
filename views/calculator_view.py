@@ -1,9 +1,6 @@
 import customtkinter
 import calculations as calc
 
-# todo:
-# -Fix button alignments
-
 
 class CalculatorFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):

@@ -9,7 +9,7 @@ class App(customtkinter.CTk):
 
     def __init__(self):
         super().__init__()
-        self.title("Assorted Fitness Tools")
+        self.title("Assorted Fitness Calculators")
         self.geometry("1000x600")
 
         self.tabview = customtkinter.CTkTabview(self)
