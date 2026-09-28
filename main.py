@@ -1,7 +1,6 @@
 import customtkinter
 
 from views.calculator_view import CalculatorFrame
-from views.recipe_builder_view import RecipeBuilderFrame
 from views.daily_macros_view import DailyMacrosFrame
 from views.unit_convert_view import UnitConvertFrame
 
@@ -17,13 +16,8 @@ class App(customtkinter.CTk):
         self.tabview.pack(fill="both", expand=True, padx=10, pady=10)
 
         self.tabview.add("Daily Macros")
-        self.tabview.add("Recipe Builder")
         self.tabview.add("Unit Converter")
         self.tabview.add("Calculator")
-
-        self.recipe_builder_view = RecipeBuilderFrame(
-            self.tabview.tab("Recipe Builder"))
-        self.recipe_builder_view.pack(fill="both", expand=True)
 
         self.calculator_view = CalculatorFrame(
             self.tabview.tab("Calculator"))
